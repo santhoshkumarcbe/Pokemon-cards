@@ -1,0 +1,44 @@
+.card{
+    margin: 0.2%;
+    padding: 0.5%;
+    width: 30%;
+    background-color: rgb(127, 9, 238);
+    align-items: center;
+    border-radius: 5px;
+
+}
+
+.card-name{
+    margin:0.5%;
+    padding: 0.5%;
+    width: auto;
+    align-items: center;
+    background-color: rgb(238, 10, 10);
+    color: white;
+    border-radius: 5px;
+}
+
+.card-name:hover{
+    background-color:rgb(255, 0, 0) ;
+}
+
+.card-image{
+    padding: 0.1%;
+    padding-left: 2%;
+    align-items: center;
+}
+
+.card-image:hover {
+    background-color: rgb(132, 0, 255);
+}
+
+.abilities {
+    margin: 3px;
+    padding: 5px;
+    background-color: rgb(127, 9, 238);
+    color: white;
+}
+
+.abilities:hover {
+    background-color: rgb(190, 0, 238);
+}
