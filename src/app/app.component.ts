@@ -2,12 +2,12 @@ import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardService } from './services/card.service';
 import { Poke } from './models/poke.model';
-import { NgFor } from '@angular/common';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor],
+  imports: [RouterOutlet, NgFor, NgIf],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -16,6 +16,7 @@ export class AppComponent {
 
   cardService: CardService = inject(CardService);
   pokes: Poke[] | null = null;
+  displayImage: boolean = true;
 
   ngOnInit(): void {
     this.cardService.getPokeApiData().subscribe({
@@ -25,4 +26,35 @@ export class AppComponent {
       },
     });
   }
+
+  // onMouseEnter(name: string) {
+  //   const imageElId = `${name}-image`;
+  //   const imageEl = document.getElementById(imageElId);
+  //   const abilitiesElId = `${name}-abilities`;
+  //   const abilitiesEl = document.getElementById(abilitiesElId);
+
+  //   if (abilitiesEl && imageEl) {
+  //     console.log('abilitiesEl', abilitiesEl);
+
+  //     imageEl.style.display = 'none';
+  //   }
+
+  //   if (abilitiesEl !== null) {
+  //     abilitiesEl.style.display = 'block';
+  //   }
+  // }
+
+  // onMouseLeave(name: string) {
+  //   const imageElId = `${name}-image`;
+  //   const imageEl = document.getElementById(imageElId);
+  //   if (imageEl !== null) {
+  //     imageEl.style.display = 'block';
+  //   }
+
+  //   const abilitiesElId = `${name}-abilities`;
+  //   const abilitiesEl = document.getElementById(abilitiesElId);
+  //   if (abilitiesEl !== null) {
+  //     abilitiesEl.style.display = 'none';
+  //   }
+  // }
 }
