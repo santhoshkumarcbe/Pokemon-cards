@@ -4,14 +4,31 @@
   <div class="card-name">
     {{ poke.name }}
   </div>
+  <img
+    src="{{ poke.images.small }}"
+    alt="{{ poke.name }}"
+    style="width: 100%"
+  />
+  <div class="container" *ngFor="let ability of poke.abilities; let i = index">
+    <p>Ability {{ i + 1 }}</p>
+    <p>Name : {{ ability.name }}</p>
+    <p>Text : {{ ability.text }}</p>
+    <p>Type : {{ ability.type }}</p>
+  </div>
+</div>
+
+<!-- <div class="card" *ngFor="let poke of pokes">
+  <div class="card-name">
+    {{ poke.name }}
+  </div>
   <div>
     <img
       class="card-image"
       src="{{ poke.images.small }}"
       alt="{{ poke.name }}"
-    />
+    /> -->
 
-    <!-- <div class="abilities" *ngIf="poke.abilities">
+<!-- <div class="abilities" *ngIf="poke.abilities">
       <div
         class="height"
         id="{{ poke.name }}-abilities"
@@ -24,5 +41,5 @@
         <p>Type : {{ ability.type }}</p>
       </div>
     </div> -->
-  </div>
-</div>
+<!-- </div>
+</div> -->

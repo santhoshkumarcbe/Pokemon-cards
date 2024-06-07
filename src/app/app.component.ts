@@ -19,10 +19,10 @@ export class AppComponent {
   displayImage: boolean = true;
 
   ngOnInit(): void {
-    this.cardService.getPokeApiData().subscribe({
+    this.cardService.getPokeApiData(0, 1).subscribe({
       next: (pokeResponseData) => {
-        this.pokes = pokeResponseData.data;
-        console.log(this.pokes[0]);
+        // this.pokes = pokeResponseData.data;
+        console.log(pokeResponseData);
       },
     });
   }

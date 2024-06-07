@@ -6,6 +6,8 @@
   background-color: rgb(127, 9, 238);
   border-radius: 5px;
   display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
 
 .card-name {
@@ -20,6 +22,7 @@
 
 .card-name:hover {
   background-color: rgb(255, 0, 0);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
 .card-image {
@@ -47,5 +50,10 @@
 }
 
 .height {
+  height: 10px;
+}
+
+.container {
+  padding: 2px 16px;
   height: 10px;
 }
