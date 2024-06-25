@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable } from 'rxjs';
-import { PokeResponseData } from '../models/poke.model';
+import { Observable, map } from 'rxjs';
+import { pokeData } from '../models/poke.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,9 +11,14 @@ export class CardService {
 
   private http: HttpClient = inject(HttpClient);
 
-  getPokeApiDataUrl = `https://api.pokemontcg.io/v2/cards`;
-
-  getPokeApiData(): Observable<PokeResponseData> {
-    return this.http.get<PokeResponseData>(this.getPokeApiDataUrl);
+  getPokeApiData(offset: number, limit: number): Observable<pokeData[]> {
+    const getPokeApiDataUrl = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
+    return this.http
+      .get<any>(getPokeApiDataUrl)
+      .pipe(map((data) => data.results));
+  }
+  getPokeImageData(value: number): Observable<any> {
+    const getPokeImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${value}.svg`;
+    return this.http.get<any>(getPokeImageUrl);
   }
 }

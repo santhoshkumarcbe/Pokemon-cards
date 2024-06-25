@@ -1,44 +1,57 @@
-.card{
-    margin: 0.2%;
-    padding: 0.5%;
-    width: 30%;
-    background-color: rgb(127, 9, 238);
-    align-items: center;
-    border-radius: 5px;
-
+.card {
+  height: 400px;
+  margin: 0.2%;
+  padding: 0.5%;
+  width: 23%;
+  background-color: rgb(127, 9, 238);
+  border-radius: 5px;
+  display: inline-block;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
 }
 
-.card-name{
-    margin:0.5%;
-    padding: 0.5%;
-    width: auto;
-    align-items: center;
-    background-color: rgb(238, 10, 10);
-    color: white;
-    border-radius: 5px;
+.card-name {
+  height: 30px;
+  margin: 0.5%;
+  padding: 0.5%;
+  align-items: center;
+  background-color: rgb(238, 10, 10);
+  color: white;
+  border-radius: 5px;
 }
 
-.card-name:hover{
-    background-color:rgb(255, 0, 0) ;
+.card-name:hover {
+  background-color: rgb(255, 0, 0);
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card-image{
-    padding: 0.1%;
-    padding-left: 2%;
-    align-items: center;
+.card-image {
+  width: 100%;
+  height: 20%;
 }
 
 .card-image:hover {
-    background-color: rgb(132, 0, 255);
+  background-color: rgb(132, 0, 255);
+  transform: rotateY(6rad);
 }
 
 .abilities {
-    margin: 3px;
-    padding: 5px;
-    background-color: rgb(127, 9, 238);
-    color: white;
+  height: 20%;
+  margin: 3px;
+  padding: 5px;
+  background-color: rgb(127, 9, 238);
+  color: white;
 }
 
 .abilities:hover {
-    background-color: rgb(190, 0, 238);
+  background-color: rgb(190, 0, 238);
+}
+
+.height {
+  height: 10px;
+}
+
+.container {
+  padding: 2px 16px;
+  height: 10px;
 }
