@@ -1,60 +1,56 @@
 import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CardService } from './services/card.service';
-import { Poke } from './models/poke.model';
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { pokeData } from './models/poke.model';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, NgFor, NgIf],
+  imports: [RouterOutlet, NgFor, NgIf, AsyncPipe],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
   title = 'pokemon-cards';
-
-  cardService: CardService = inject(CardService);
-  pokes: Poke[] | null = null;
+  pokesData!: pokeData[];
+  cardService = inject(CardService);
   displayImage: boolean = true;
+  startIndex = 0;
+  endIndex = 100;
+  disablePreviousButton = this.startIndex === 0;
 
   ngOnInit(): void {
-    this.cardService.getPokeApiData(0, 1).subscribe({
+    this.getCardData();
+  }
+
+  onNext() {
+    this.startIndex = this.endIndex;
+    this.endIndex += 100;
+    this.getCardData();
+    this.disablePreviousButton = this.startIndex === 0;
+  }
+
+  onPrevious() {
+    this.endIndex = this.startIndex;
+    this.startIndex -= 100;
+    this.getCardData();
+    this.disablePreviousButton = this.startIndex === 0;
+  }
+
+  getCardData() {
+    this.cardService.getPokeApiData(this.startIndex, this.endIndex).subscribe({
       next: (pokeResponseData) => {
-        // this.pokes = pokeResponseData.data;
+        this.pokesData = pokeResponseData;
         console.log(pokeResponseData);
       },
     });
   }
 
-  // onMouseEnter(name: string) {
-  //   const imageElId = `${name}-image`;
-  //   const imageEl = document.getElementById(imageElId);
-  //   const abilitiesElId = `${name}-abilities`;
-  //   const abilitiesEl = document.getElementById(abilitiesElId);
-
-  //   if (abilitiesEl && imageEl) {
-  //     console.log('abilitiesEl', abilitiesEl);
-
-  //     imageEl.style.display = 'none';
-  //   }
-
-  //   if (abilitiesEl !== null) {
-  //     abilitiesEl.style.display = 'block';
-  //   }
-  // }
-
-  // onMouseLeave(name: string) {
-  //   const imageElId = `${name}-image`;
-  //   const imageEl = document.getElementById(imageElId);
-  //   if (imageEl !== null) {
-  //     imageEl.style.display = 'block';
-  //   }
-
-  //   const abilitiesElId = `${name}-abilities`;
-  //   const abilitiesEl = document.getElementById(abilitiesElId);
-  //   if (abilitiesEl !== null) {
-  //     abilitiesEl.style.display = 'none';
-  //   }
-  // }
+  getImage(i: number): string {
+    let ImageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
+      i + this.startIndex
+    }.svg`;
+    return ImageUrl;
+  }
 }

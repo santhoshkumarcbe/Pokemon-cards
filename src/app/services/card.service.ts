@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import { PokeResponseData } from '../models/poke.model';
+import { pokeData } from '../models/poke.model';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ export class CardService {
 
   private http: HttpClient = inject(HttpClient);
 
-  getPokeApiData(offset: number, limit: number): Observable<any> {
+  getPokeApiData(offset: number, limit: number): Observable<pokeData[]> {
     const getPokeApiDataUrl = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${limit}`;
     return this.http
       .get<any>(getPokeApiDataUrl)

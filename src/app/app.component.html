@@ -1,45 +1,13 @@
 <h1>PokeMon Cards</h1>
-
-<div class="card" *ngFor="let poke of pokes">
+<p>Card S.No starts from {{ startIndex + 1 }} to {{ endIndex }}</p>
+<button [disabled]="disablePreviousButton" (click)="onPrevious()">
+  previous
+</button>
+<button (click)="onNext()">next</button>
+<br />
+<div class="card" *ngFor="let poke of pokesData; index as i">
   <div class="card-name">
     {{ poke.name }}
   </div>
-  <img
-    src="{{ poke.images.small }}"
-    alt="{{ poke.name }}"
-    style="width: 100%"
-  />
-  <div class="container" *ngFor="let ability of poke.abilities; let i = index">
-    <p>Ability {{ i + 1 }}</p>
-    <p>Name : {{ ability.name }}</p>
-    <p>Text : {{ ability.text }}</p>
-    <p>Type : {{ ability.type }}</p>
-  </div>
+  <img class="card-image" [src]="getImage(i + 1)" alt="{{ poke.name }}" />
 </div>
-
-<!-- <div class="card" *ngFor="let poke of pokes">
-  <div class="card-name">
-    {{ poke.name }}
-  </div>
-  <div>
-    <img
-      class="card-image"
-      src="{{ poke.images.small }}"
-      alt="{{ poke.name }}"
-    /> -->
-
-<!-- <div class="abilities" *ngIf="poke.abilities">
-      <div
-        class="height"
-        id="{{ poke.name }}-abilities"
-        style="display: none"
-        *ngFor="let ability of poke.abilities; let i = index"
-      >
-        <p>Ability {{ i + 1 }}</p>
-        <p>Name : {{ ability.name }}</p>
-        <p>Text : {{ ability.text }}</p>
-        <p>Type : {{ ability.type }}</p>
-      </div>
-    </div> -->
-<!-- </div>
-</div> -->
